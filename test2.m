@@ -5,7 +5,7 @@ theta=[0;90;-90;0;-90;-90];
 wdot=[0;0;0];
 direction=2;
 a=1;
- %Numerical Method Step Size(variable)
+%Numerical Method Step Size(variable)
     step=10; 
     
     %Plot start position
