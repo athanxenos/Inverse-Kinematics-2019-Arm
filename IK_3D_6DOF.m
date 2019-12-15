@@ -4,7 +4,7 @@ close all; clear; clc;
 theta=[0;90;-90;0;-90;-90];
 
 %Initial cartesian velocity vector (xyz) (normalised)
-xdot=[0;1;0];
+xdot=[0;0;1];
 xdot=xdot/norm(xdot);
 
 %Restrict angular velocity to limit wrist rotation (Euler Angles)
