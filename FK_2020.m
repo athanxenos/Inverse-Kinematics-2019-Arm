@@ -1,4 +1,4 @@
-function [T01,T02,T03,T04,T05,T06,P_end] =FK_2019(theta)
+function [T01,T02,T03,T04,T05,T06,P_end] =FK_2020(theta)
 %Forward Kinematics Function for 2019 Arm
 %DH values are predetermined by arm geometry except for theta values,units
 %in cm/deg
@@ -13,14 +13,14 @@ function [T01,T02,T03,T04,T05,T06,P_end] =FK_2019(theta)
 
 %Constant DH Paramters 
 d1=0;a0=0;alpha0=0; %parameter joint1
-d2=0;a1=7.5;alpha1=90; %parameter joint2
+d2=0;a1=0;alpha1=90; %parameter joint2
 d3=0;a2=65;alpha2=0; %parameter joint3
-d4=0;a3=70;alpha3=0; %parameter joint4
-d5=0;a4=0;alpha4=-90; %parameter joint5
+d4=0;a3=42;alpha3=0; %parameter joint4
+d5=11;a4=0;alpha4=-90; %parameter joint5
 d6=0;a5=0;alpha5=-90; %parameter joint6
 
-a6=25;
-P6_end=[0; 0; a6; 1]; %End effector position w.r.t frame 6,
+d7=25;
+P6_end=[0; 0; d7; 1]; %End effector position w.r.t frame 6,
 
 %Determine T matrices for current theta values
 T01=DHmatrix(theta(1),d1,a0,alpha0);

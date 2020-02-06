@@ -1,4 +1,4 @@
-function [theta_end,n] = IK_Position_2019(theta_start,p_end,joints)
+function [theta_end,n] = IK_Position_2020(theta_start,p_end,joints)
 %Inverse Kinematics Function for 2019 Arm
 %Returns theta values for desired end effector position
 

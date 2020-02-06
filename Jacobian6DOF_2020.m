@@ -1,4 +1,4 @@
-function [J] = Jacobian6DOF_2019(T01,T02,T03,T04,T05,T06,P_end)
+function [J] = Jacobian6DOF_2020(T01,T02,T03,T04,T05,T06,P_end)
 %Function to calculate 6x6 Jacobian Matrix at given arm orientation
 %Revolute: Jv = zi x (on - oi), Jw=zi
 

@@ -1,4 +1,4 @@
-function [dtheta] = IK_Velocity_2019(theta_start,xdot,step,joints)
+function [dtheta] = IK_Velocity_2020(theta_start,xdot,step,joints)
 %IK_Velocity_2019
 %Inverse Kinematics that moves based on a velocity vector using 3 or 6
 %joints

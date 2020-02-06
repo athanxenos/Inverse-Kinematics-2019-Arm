@@ -1,4 +1,4 @@
-function [Jv] = Jacobian3DOF_2019(T01,T02,T03,T04,T05,T06,P_end,joints)
+function [Jv] = Jacobian3DOF_2020(T01,T02,T03,T04,T05,T06,P_end,joints)
 %Function to calculate 3x6 Jacobian Matrix at given arm orientation
 %Revolute: Jv = zi x (on - oi)
  
@@ -16,8 +16,8 @@ if (joints==6)
     %Move about end effector
     O6=P_end(1:3)'; 
 else
-    %Move about spherical wrist
-    O6=T06(1:3,4);  
+    %Move about wrist
+    O6=T04(1:3,4);  
 end
 
 %Calculate each column of Jacobian for each joint
