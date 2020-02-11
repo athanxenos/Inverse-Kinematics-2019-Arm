@@ -8,14 +8,16 @@ function [theta_new,dtheta_weight] = update_theta(theta,dtheta,dtheta_max)
 %Output:
 %theta_new - updated theta values
 %dtheta_weight - weighted dtheta values
-max_delta = max(dtheta);
+max_delta = max(abs(dtheta));
 alpha = 1;
+H = clamping(theta);
 
 if max_delta > dtheta_max
     alpha = dtheta_max/max_delta;
 end
-disp(alpha);
-dtheta_weight = dtheta*alpha;
+%disp(alpha);
+dtheta_weight = alpha*(H*dtheta);
 theta_new = theta + dtheta_weight;
+theta_new = wrapTo180(theta_new);
 end
 
