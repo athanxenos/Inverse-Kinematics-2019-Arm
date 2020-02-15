@@ -4,7 +4,7 @@ global qmin;
 global qmax;
 
 %Initial angle values (arm position)
-theta=[0;90;-90;0;-90;0];
+theta=[-89;90;-90;0;-90;0];
 
 qmin=[-90,-30,-180,-180,-180,-180];
 qmax=[90,120,180,180,180,180];
@@ -26,6 +26,8 @@ step=1;
 n=100;
 dtheta_max=50;
 
+H_prev = zeros(6,1);
+
 %Plot start position
 figure
 hold
@@ -42,33 +44,27 @@ for i=1:n
     [J] = Jacobian6DOF_2020(T01,T02,T03,T04,T05,T06,P_end);
     
     %Return Weights for Joint Limits
-    [W] = weights(theta);
+    [W,H_prev] = weights(theta,H_prev);
     
-    %Pseudoinverse Jacobian with Weights
-    %M = J*inv(W)*J';
-    %t = M\vdot;
-    %thetadot = inv(W)*J'*t;
-    %thetadot = inv(W)*J'*inv(J*inv(W)*J')*vdot;
+    %Weighted Jacobian
+    J_W =J*W^(0.5);
     
     %Pseudoinverse Jacobian to find angular velocity
-    thetadot = W^(-0.5)*J'*inv(J*inv(W)*J')*vdot;
-    %J_W =J*(W^(-0.5));
-    %thetadot=W^(-0.5)*pinv(J_W)*vdot;
-    %thetadot=W^(0.5)*thetadot;
-    thetadot_test=pinv(J)*vdot;
-    %thetadot = W^(0.5)*thetadot;
+    invJW=pinv(J_W);
+    thetadot=pinv(J_W)*vdot;
 
+    %Compare to non-weighted Jacobian
+    thetadot_true=pinv(J)*vdot;
+    
     %Convert angular velocity to deg/s
     dtheta=rad2deg(thetadot)*step;
 
     %Update angle based on weighted angular velocity
     [theta,dtheta_weight] = update_theta(theta,dtheta,dtheta_max); 
     
-    
-    %disp(W(1,1));
     fprintf('Weight is %.3f\n',W(1,1));
     disp(dtheta(1));
-    disp(rad2deg(thetadot_test(1))*step);
+    disp(rad2deg(thetadot_true(1)));
 end
 
 %Plot end position
