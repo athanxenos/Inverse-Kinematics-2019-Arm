@@ -4,7 +4,7 @@ global qmin;
 global qmax;
 
 %Initial angle values (arm position)
-theta=[-89;90;-90;0;-90;0];
+theta=[0;90;-90;0;-90;0];
 
 qmin=[-90,-30,-180,-180,-180,-180];
 qmax=[90,120,180,180,180,180];
@@ -50,7 +50,6 @@ for i=1:n
     J_W =J*W^(0.5);
     
     %Pseudoinverse Jacobian to find angular velocity
-    invJW=pinv(J_W);
     thetadot=pinv(J_W)*vdot;
 
     %Compare to non-weighted Jacobian
